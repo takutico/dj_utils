@@ -27,6 +27,8 @@ class InactivityLogout(object):
 				request.session['FORCED_LOGOUT'] = True
 				del request.session['last_activity']
 				return
-			request.session['last_activity'] = str(datetime.now())
+			
 		except KeyError:
 			pass
+		request.session['last_activity'] = str(datetime.now())
+		
