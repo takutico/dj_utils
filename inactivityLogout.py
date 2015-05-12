@@ -28,6 +28,6 @@ class InactivityLogout(object):
                     del request.session['last_activity']
                     return
 			
-                except KeyError:
-                    pass
-                request.session['last_activity'] = str(datetime.now())
+            except KeyError:
+                pass
+            request.session['last_activity'] = str(datetime.now())
