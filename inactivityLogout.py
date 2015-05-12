@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 class InactivityLogout(object):
 	def process_request( self, request ):
 	    """
-	    Auto log out the user if appropriate or update last activity in session
+	     Auto log out the user if appropriate or update last activity in session
 	    """
 		if not request.user.is_authenticated():
 			return
