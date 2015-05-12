@@ -7,6 +7,9 @@ class InactivityLogout(object):
 	def process_request( self, request ):
 	    """
 	    Auto log out the user if appropriate or update last activity in session
+	    TODO: Need to add AUTO_LOGOUT_DELAY in setting file
+	    # Auto logout delay time in secounds, default is 7200 (2hours)
+	    AUTO_LOGOUT_DELAY = 1800
 	    """
 		if not request.user.is_authenticated():
 			return
