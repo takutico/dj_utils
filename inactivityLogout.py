@@ -1,4 +1,6 @@
-from datetime import datetime, timedelta
+"""
+To install this middleware, add to your 'settings.MIDDLEWARE_CLASSES':
+"""
 from django.conf import settings
 from django.contrib.auth import logout
 
