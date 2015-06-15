@@ -27,3 +27,14 @@ def groups_required(login_url='/', *names):
         return wrapper
     return decorator
 
+
+def find_between( s, first, last ):
+    """
+    get the string between two characters
+    """
+    try:
+        start = s.index( first ) + len( first )
+        end = s.index( last, start )
+        return s[start:end]
+    except ValueError:
+        return ""
