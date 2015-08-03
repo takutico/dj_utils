@@ -3,6 +3,14 @@ import logging
 from django.http.response import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.conf import settings
+from django.utils.deconstruct import deconstructible
+from uuid import uuid4
+import os
+
+
+# log system
+logger = logging.getLogger(__name__)
 
 
 def groups_required(login_url='/', *names):
@@ -83,3 +91,26 @@ def createThumbnail(user):
     except Exception as e:
         print(str(e))
         return
+
+
+@deconstructible
+class PathAndRename(object):
+    """
+    save iamges in separates folders and specific name
+    """
+    def __init__(self, sub_path):
+        self.path = sub_path
+
+    def __call__(self, instance, filename):
+        ext = filename.split('.')[-1]
+        if instance.pk:
+            filename = '%08d.%s' % (instance.pk, ext)
+        else:
+            filename = '%s.%s' % (uuid4().hex, ext)
+        tmp_path = self.path
+        for i in range(3):
+            tmp_path = os.path.join(tmp_path, filename[i * 2:i * 2 + 2])
+        return os.path.join(tmp_path, filename)
+
+# example:
+# path_and_rename = PathAndRename('staffs/')
