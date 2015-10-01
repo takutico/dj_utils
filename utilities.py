@@ -115,3 +115,8 @@ class PathAndRename(object):
 # example:
 # path_and_rename = PathAndRename('staffs/')
 # image = models.ImageField(upload_to=path_and_rename, null=True, blank=True)
+
+
+def code_generator(size=8, chars=string.digits):
+    """ Rando code genedator """
+    return ''.join(random.choice(chars) for _ in range(size))
