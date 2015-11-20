@@ -125,24 +125,24 @@ def code_generator(size=8, chars=string.ascii_uppercase+string.ascii_lowercase+s
 from django.db.models import Q
 
 def multi_search_specific(request):
-	""" Django multi field search """"
-	result_list = XXX.objects.all()
+    """ Django multi field search """"
+    result_list = XXX.objects.all()
 
-	# field that you want to search
-	field_list = ['name', 'email', 'phone']
+    # field that you want to search
+    field_list = ['name', 'email', 'phone']
 
-	# we will filter by GET and q is the input field name
-	if request.method == 'GET' and 'q' in request.GET:
-		query = request.GET['q']
+    # we will filter by GET and q is the input field name
+    if request.method == 'GET' and 'q' in request.GET:
+        query = request.GET['q']
 
-		# split by spaces
-		params = query.split(' ')
-		q = Q()
-		for param in params:
-			q_tmp = Q()
-			for key in field_list:
-				kw = {key+'__icontains': param}
-				q_tmp |= Q(**kw)
-			q &= q_tmp
+        # split by spaces
+	params = query.split(' ')
+	q = Q()
+	for param in params:
+            q_tmp = Q()
+            for key in field_list:
+                kw = {key+'__icontains': param}
+        	q_tmp |= Q(**kw)
+                q &= q_tmp
 
-		result_list = result_list.filter(q)
+        result_list = result_list.filter(q)
