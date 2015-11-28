@@ -137,5 +137,6 @@ def filter_by_multiple_fields(query_set={}, field_list=[], query=''):
         for key in field_list:
             kw = {key + '__icontains': param}
             q_tmp |= Q(**kw)
-        q &= q_tmp
+        # q &= q_tmp  # and in params. Need to match all params
+        q |= q_tmp  # or in params. No need to match all params, just match one of them
     return query_set.filter(q)
