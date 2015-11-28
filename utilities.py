@@ -128,8 +128,8 @@ from django.db.models import Q
 def filter_by_multiple_fields(query_set={}, field_list=[], query=''):
     """ filter by multiple fields """
     query = query
-    query = query.replace(u'　', ' ')  # fot utf spaces
-    params = query.split(' ')
+    # query = query.replace(u'　', ' ')  # fot utf spaces
+    params = [item.strip() for item in query.split(',')]
 
     q = Q()
     for param in params:
