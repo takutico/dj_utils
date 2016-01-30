@@ -140,3 +140,7 @@ def filter_by_multiple_fields(query_set={}, field_list=[], query=''):
         # q &= q_tmp  # and in params. Need to match all params
         q |= q_tmp  # or in params. No need to match all params, just match one of them
     return query_set.filter(q)
+
+
+def check_email(email):
+    return True if re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email) else False
